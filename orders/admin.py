@@ -1,18 +1,19 @@
 from django.contrib import admin
-from .models import Order
+from .models import Order, Customer
 
 
-class OrderAdmin(admin.ModelAdmin):
+class CustomerAdmin(admin.ModelAdmin):
     list_display = (
-        "reference",
-        "amount",
-        "creation_date",
-        "due_date",
-        "customer_name",
-        "customer_address",
-        "customer_city",
-        "customer_zip_code",
+        "name",
+        "address",
+        "city",
+        "zip_code",
     )
 
 
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ("reference", "customer", "amount", "creation_date", "due_date")
+
+
+admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Order, OrderAdmin)
